@@ -1,0 +1,1172 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "AppState",
+            "id": "interface-AppState-f09a723fe542f3c57f121026739bf179600b4efc6ffb7ee48a4dff3f4bd575b89fbbfb98aee355298eb3e031ecb4b50e3d327ff94bc6dba2d663fe932f3c39c2",
+            "file": "src/app/app.state.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ErrorInterface } from \"@/app/interfaces/error\";\r\n\r\nexport interface AppState{\r\n    readonly errors: Array<ErrorInterface>;\r\n}",
+            "properties": [
+                {
+                    "name": "errors",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Array<ErrorInterface>",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "ErrorInterface",
+            "id": "interface-ErrorInterface-6e021878ca835ee6bbeaf53b9af8ebaaf679ea9da00f904062188937d3e55fab29b40ee7ce0d9ce7a4d0c135e1264b55ebd8ae0e95805d045f7929056ca4ffbb",
+            "file": "src/app/interfaces/error.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface ErrorInterface{\r\n    code: number;\r\n    message: string;\r\n}",
+            "properties": [
+                {
+                    "name": "code",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "message",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "PostInterface",
+            "id": "interface-PostInterface-92b3e15d397b58ed989c7356718f0a8ef0b2ce062f8e51d7be72ca13a2ef3155a6e1f7ef7be06090cfc50098a573abf14c4bc3fdd5bc01e16d86070dc844542e",
+            "file": "src/app/interfaces/post.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface PostInterface {\r\n  id?: number;\r\n  userId?: number;\r\n  title: string;\r\n  body: string;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "body",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": true,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "userId",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": true,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "PostService",
+            "id": "injectable-PostService-3275ebe90bbeb2fe0285bd527ce25407bda9becfc11f83e207397d9e24a428744982e30b7222ced1305862035261a82f7d56534560ae5eb0490c5fd8b6152c4c",
+            "file": "src/app/services/post.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getPosts",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<Array<PostInterface>>",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { HttpClient } from '@angular/common/http';\r\nimport { PostInterface } from '@/app/interfaces/post';\r\nimport { Observable } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class PostService {\r\n\r\n  constructor(private http: HttpClient) { }\r\n\r\n  getPosts ():Observable<Array<PostInterface>> {\r\n    return this.http.get<Array<PostInterface>>('https://jsonplaceholder.typicode.com/posts2')\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [
+        {
+            "name": "ErrorInterceptorService",
+            "id": "injectable-ErrorInterceptorService-f761f3db00c7ceb49faa89c532df7a9fb78885a9acb5f1bdfa69e2368933b197c9ba13bb7f2d9228ffd110b8ca1530870ff492a263f0ca749a785797733590f1",
+            "file": "src/app/utils/error-interceptor.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "intercept",
+                    "args": [
+                        {
+                            "name": "req",
+                            "type": "HttpRequest<any>",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "next",
+                            "type": "HttpHandler",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<HttpEvent<any>>",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "req",
+                            "type": "HttpRequest<any>",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "next",
+                            "type": "HttpHandler",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';\r\nimport { Observable, throwError } from 'rxjs';\r\nimport { catchError, map } from 'rxjs/operators';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class ErrorInterceptorService implements HttpInterceptor {\r\n\r\n  constructor() { }\r\n\r\n  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\r\n    console.log(req, next)\r\n    return next.handle(req).pipe(\r\n      map(res => {\r\n        return res;\r\n      }),\r\n      catchError((error: HttpErrorResponse) => {\r\n        let message = '';\r\n        if (error.error instanceof ErrorEvent) {\r\n          message = `Error code: ${error.error.message}`;\r\n        } else {\r\n          message = `Error code: ${error.status}`;\r\n        }\r\n        console.log(message)\r\n        return throwError(message)\r\n      })\r\n    );\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 9
+            },
+            "type": "interceptor"
+        }
+    ],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-bb9528fefea1ae692f970ae536705f18d1285675fa3fe12bf13bb42e34eba147d6330090a1ab67c7fd209f839108a9c276fe83a61b288d79130a26d840f20088",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "ArrErrors",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Array<ErrorInterface>",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'AppTest'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "generateErrorDummyVoid",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { Store, select } from '@ngrx/store';\r\nimport { AppState } from '@/app/app.state';\r\nimport { ErrorInterface } from './interfaces/error';\r\nimport * as ErrorActions from '@/app/store/error.actions';\r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: ['./app.component.scss'],\r\n})\r\nexport class AppComponent implements OnInit {\r\n  title = 'AppTest';\r\n  ArrErrors: Array<ErrorInterface> = [];\r\n\r\n  constructor(private store: Store<AppState>) {}\r\n\r\n  generateErrorDummyVoid(): void {\r\n    const error: Array<ErrorInterface> = [{ code: 500, message: 'test'}]\r\n    this.store.dispatch(ErrorActions.ADD_ERROR({ payload: error }));\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.store.subscribe((state) => {\r\n      this.ArrErrors = state.errors;\r\n    });\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "store",
+                        "type": "Store<AppState>",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 13,
+                "jsdoctags": [
+                    {
+                        "name": "store",
+                        "type": "Store<AppState>",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<router-outlet></router-outlet>\r\n<ul>\r\n    <button (click)=\"generateErrorDummyVoid()\">error</button>\r\n    <li *ngFor=\"let item of ArrErrors\">{{ item.code }}</li>\r\n</ul>"
+        },
+        {
+            "name": "CheckboxFormComponent",
+            "id": "component-CheckboxFormComponent-3101644a0706213d5156c98092f67aed98479469476e6fa431cd45c9a971be671ebb83b9b75fa0d63f4fbea57c891f5595d42826d5338db0683a1a072ac9fc10",
+            "file": "src/app/components/form/checkbox/checkbox.form.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-post",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./checkbox.form.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhat background color to use\n",
+                    "description": "<p>What background color to use</p>\n",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 493,
+                            "end": 507,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 325,
+                            "tagName": {
+                                "pos": 494,
+                                "end": 502,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "required"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "\n\nButton contents\n\n",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nHow large should the button be?\n",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 21,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "Click",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nOptional click handler\n",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 35,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-post',\r\n  templateUrl: './checkbox.form.component.html',\r\n})\r\nexport class CheckboxFormComponent {\r\n  @Input()\r\n  primary = false;\r\n\r\n  /**\r\n   * What background color to use\r\n   */\r\n  @Input()\r\n  backgroundColor?: string = '';\r\n\r\n  /**\r\n   * How large should the button be?\r\n   */\r\n  @Input()\r\n  size: 'small' | 'medium' | 'large' = 'medium';\r\n\r\n  /**\r\n   * Button contents\r\n   *\r\n   * @required\r\n   */\r\n  @Input()\r\n  label = 'Button';\r\n\r\n  /**\r\n   * Optional click handler\r\n   */\r\n  @Output()\r\n  Click = new EventEmitter<Event>();\r\n\r\n  constructor() { }\r\n\r\n  public get classes(): string[] {\r\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\r\n\r\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 35
+            },
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 39
+                    }
+                }
+            },
+            "templateData": "<input [class]=\"classes\" />\r\n"
+        },
+        {
+            "name": "HomeComponent",
+            "id": "component-HomeComponent-3349d6862dd1fea6e1bc09fa3085db2c717d7f4e540ee4bf18779273eec21ee12663f2d597b4abd76d5b10f21b23ec4e8233d51c56ffb6e7d9442137fbac31f9",
+            "file": "src/app/pages/home/home.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-home",
+            "styleUrls": [
+                "./home.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./home.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  templateUrl: './home.component.html',\r\n  styleUrls: ['./home.component.scss'],\r\n})\r\nexport class HomeComponent implements OnInit {\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    console.log('test');\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./home.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<p class=\" text-red-400 flex justify-center hover:animate-spin\">home works!</p>\r\n"
+        },
+        {
+            "name": "PostComponent",
+            "id": "component-PostComponent-14e1ce34078f7a3f75536feabc6db5e3f3f4b052b6b5106de3102f322ad392180ddf5f36e3bc4e75241df70d16074de419948c0e7868613f27733fac51f72337",
+            "file": "src/app/components/post/post.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-post",
+            "styleUrls": [
+                "./post.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./post.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-post',\r\n  templateUrl: './post.component.html',\r\n  styleUrls: ['./post.component.scss']\r\n})\r\nexport class PostComponent {\r\n\r\n  constructor() { }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./post.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "templateData": "<p>post works!</p>\r\n"
+        },
+        {
+            "name": "PostPageComponent",
+            "id": "component-PostPageComponent-ac286b31803354fdc14e0fa274c7f5b4c5c4a4776e966b5b4bf49a5a39953ef0ddc368b00a0076dcd2cfe028a7f01537f47a017ffbb6aaa3fbfdcf921470d1d0",
+            "file": "src/app/pages/post-page/post-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-post-page",
+            "styleUrls": [
+                "./post-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./post-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "posts",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Array<PostInterface>",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getPost",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 15,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        131
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { PostService } from '@/app/services/post.service';\r\nimport { PostInterface } from '@/app/interfaces/post';\r\n\r\n@Component({\r\n  selector: 'app-post-page',\r\n  templateUrl: './post-page.component.html',\r\n  styleUrls: ['./post-page.component.scss']\r\n})\r\nexport class PostPageComponent implements OnInit {\r\n  posts: Array<PostInterface> = [];\r\n\r\n  constructor(private http: PostService) { }\r\n\r\n  async getPost():Promise<void> {\r\n    const response = this.http.getPosts();\r\n    console.log('posts', response)\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.getPost();\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./post-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "PostService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "PostService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<p>post-page k works!</p>\r\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-498ed47ceb5bce375ae614a22235a51d0ce0b0fffad555d068674787eeb307a0b9905775e92abbcc946043f289de147bab393b06360daed0602d4d4f2d140a04",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { StoreModule } from '@ngrx/store';\r\nimport { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';\r\n\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { PostComponent } from './components/post/post.component';\r\nimport { ErrorInterceptorService } from '@/app/utils/error-interceptor.service';\r\nimport { HomeComponent } from './pages/home/home.component';\r\nimport { errorReducer } from './store/error.reducer';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule } from '@angular/forms';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    PostComponent,\r\n    HomeComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    FormsModule,\r\n    CommonModule,\r\n    AppRoutingModule,\r\n    HttpClientModule,\r\n    StoreModule.forRoot({ errors: errorReducer }),\r\n  ],\r\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\r\n  providers: [\r\n    {\r\n      provide: HTTP_INTERCEPTORS,\r\n      useClass: ErrorInterceptorService,\r\n      multi: true\r\n    }\r\n  ],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": [
+                        {
+                            "name": "ErrorInterceptorService"
+                        }
+                    ]
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        },
+                        {
+                            "name": "HomeComponent"
+                        },
+                        {
+                            "name": "PostComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "id": "module-AppRoutingModule-a610893f9a82d7f914d18e9bf2341b056341b1c9a950df9c048b9622660fbebad5a625aad4722f819f378886cb1297d54f9abb6407979178f9351468e70c6b4d",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { HomeComponent } from './pages/home/home.component';\r\nimport { PostPageComponent } from './pages/post-page/post-page.component';\r\nimport { FormsModule } from '@angular/forms';\r\n\r\nconst routes: Routes = [\r\n  { path: '', pathMatch: 'full', redirectTo: 'home' },\r\n  {path: 'home', component: HomeComponent },\r\n  {path: 'post', component: PostPageComponent },\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "ADD_ERROR",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/store/error.actions.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "createAction('ADD_ERROR', props<{ payload: Array<ErrorInterface> }>())"
+            },
+            {
+                "name": "config",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "jest.config.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Config.InitialOptions",
+                "defaultValue": "{\r\n  verbose: true,\r\n    preset: \"jest-preset-angular\",\r\n    setupFilesAfterEnv: [\r\n      \"<rootDir>/setupJest.ts\"\r\n    ],\r\n    testPathIgnorePatterns: [\r\n      \"<rootDir>/node_modules/\",\r\n      \"<rootDir>/dist/\"\r\n    ],\r\n    globals: {\r\n      \"ts-jest\": {\r\n        \"stringifyContentPathRegex\": \"\\\\.html$\"\r\n      }\r\n    }\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: true\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: false\r\n}"
+            },
+            {
+                "name": "errorReducer",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/store/error.reducer.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "createReducer(initialState,\r\n    on(ErrorActions.ADD_ERROR, (state, { payload }) => {\r\n        console.log(payload)\r\n        return payload\r\n    }))"
+            },
+            {
+                "name": "initialState",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/store/error.reducer.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Array<ErrorInterface>",
+                "defaultValue": "[]"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/form/checkbox/checkbox.form.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/form/checkbox/checkbox.form.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CheckboxFormComponent>",
+                "defaultValue": "() => ({\r\n  props: {},\r\n})"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/app/store/error.actions.ts": [
+                {
+                    "name": "ADD_ERROR",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/store/error.actions.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "createAction('ADD_ERROR', props<{ payload: Array<ErrorInterface> }>())"
+                }
+            ],
+            "jest.config.ts": [
+                {
+                    "name": "config",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "jest.config.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Config.InitialOptions",
+                    "defaultValue": "{\r\n  verbose: true,\r\n    preset: \"jest-preset-angular\",\r\n    setupFilesAfterEnv: [\r\n      \"<rootDir>/setupJest.ts\"\r\n    ],\r\n    testPathIgnorePatterns: [\r\n      \"<rootDir>/node_modules/\",\r\n      \"<rootDir>/dist/\"\r\n    ],\r\n    globals: {\r\n      \"ts-jest\": {\r\n        \"stringifyContentPathRegex\": \"\\\\.html$\"\r\n      }\r\n    }\r\n}"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: true\r\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: false\r\n}"
+                }
+            ],
+            "src/app/store/error.reducer.ts": [
+                {
+                    "name": "errorReducer",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/store/error.reducer.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "createReducer(initialState,\r\n    on(ErrorActions.ADD_ERROR, (state, { payload }) => {\r\n        console.log(payload)\r\n        return payload\r\n    }))"
+                },
+                {
+                    "name": "initialState",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/store/error.reducer.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Array<ErrorInterface>",
+                    "defaultValue": "[]"
+                }
+            ],
+            "src/app/components/form/checkbox/checkbox.form.component.stories.ts": [
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/form/checkbox/checkbox.form.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/form/checkbox/checkbox.form.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<CheckboxFormComponent>",
+                    "defaultValue": "() => ({\r\n  props: {},\r\n})"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [
+                    {
+                        "path": "",
+                        "pathMatch": "full",
+                        "redirectTo": "home"
+                    },
+                    {
+                        "path": "home",
+                        "component": "HomeComponent"
+                    },
+                    {
+                        "path": "post",
+                        "component": "PostPageComponent"
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 3,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "jest.config.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "config",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.state.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "AppState",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/form/checkbox/checkbox.form.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/form/checkbox/checkbox.form.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/form/checkbox/checkbox.form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CheckboxFormComponent",
+                "coveragePercent": 57,
+                "coverageCount": "4/7",
+                "status": "good"
+            },
+            {
+                "filePath": "src/app/components/post/post.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PostComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/interfaces/error.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ErrorInterface",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/interfaces/post.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "PostInterface",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/home/home.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/post-page/post-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PostPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/post.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "PostService",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/error.actions.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ADD_ERROR",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/error.reducer.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "errorReducer",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/error.reducer.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "initialState",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/utils/error-interceptor.service.ts",
+                "type": "interceptor",
+                "linktype": "interceptor",
+                "name": "ErrorInterceptorService",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
