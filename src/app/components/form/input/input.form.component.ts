@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-input',
   templateUrl: './input.form.component.html',
 })
-export class CheckboxFormComponent {
+export class InputTextFormComponent {
   @Input()
   value: string = '';
   @Input()
@@ -15,11 +15,15 @@ export class CheckboxFormComponent {
   name: string = '';
   @Input()
   required: boolean = false;
+  @Input()
+  isEmail: boolean = false;
+  @Input()
+  type: string = 'text';
 
   @Output()
-  changeValue: EventEmitter<string> = new EventEmitter();
+  valueChange: EventEmitter<string> = new EventEmitter();
 
-  updateValue (value: HTMLInputElement): void {
-    this.changeValue.emit(value.value);
+  updateValue (value: string): void {
+    this.valueChange.emit(value);
   }
 }
