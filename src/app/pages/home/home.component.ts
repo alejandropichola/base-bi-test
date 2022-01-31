@@ -8,6 +8,7 @@ import { environment } from '@/environments/environment';
 })
 export class HomeComponent implements OnInit {
   public version = process.env.NG_APP_HOST_URL;
+  public firstName: string = '';
 
   constructor() {
     console.log(process.env);
