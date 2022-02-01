@@ -1,8 +1,18 @@
 module.exports = {
-  mode:  'jit',
-  content: ['./src/**/*.{html,ts}'],
+  purge: {
+    content: ['./src/**/*.{html,ts}']
+  },
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'primary': {
+          100: '#009DEB'
+        }
+      },
+      screens: {
+        'xs': {'min': '300px', 'max': '640px'},
+      }
+    },
   },
   plugins: [],
 };
