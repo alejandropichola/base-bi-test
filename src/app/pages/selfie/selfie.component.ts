@@ -1,38 +1,68 @@
-import { Component, OnInit, OnDestroy, PLATFORM_ID, Inject, ViewChild, ElementRef } from '@angular/core';
-import {isPlatformBrowser} from '@angular/common';
+import {
+  Component,
+  OnInit,
+  PLATFORM_ID,
+  Inject,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Store } from '@ngrx/store';
+
+import { AppState } from '@/app/app.state';
+import { UserInterface } from '@/app/interfaces/user';
+import { UserServices } from '@/app/services/createUser';
 
 @Component({
   selector: 'app-selfie',
   templateUrl: './selfie.component.html',
-  styleUrls: ['./selfie.component.scss']
+  styleUrls: ['./selfie.component.scss'],
 })
-export class SelfieComponent implements OnInit{
-
-  @ViewChild('video', {static: true}) video: ElementRef<HTMLVideoElement> | any;
+export class SelfieComponent implements OnInit {
+  @ViewChild('video', { static: true }) video:
+    | ElementRef<HTMLVideoElement>
+    | any;
   @ViewChild('canvas') canvas: ElementRef | any;
 
   cameraActive: boolean = true;
   youLike: boolean = false;
+  imageURL: string = '';
+  user!: UserInterface;
 
-  constructor(@Inject(PLATFORM_ID) private _platform: Object) { }
+  constructor(
+    @Inject(PLATFORM_ID) private _platform: Object,
+    private store: Store<AppState>,
+    private http: UserServices
+  ) {}
 
   ngOnInit(): void {
     this.onStart();
+    this.getUser();
   }
 
   onStart(): void {
-    if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
-      navigator.mediaDevices.getUserMedia({video: true}).then((ms: MediaStream) => {
-        const _video = this.video.nativeElement;
-        _video.srcObject = ms;
-        _video.play();
-      });
+    if (isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((ms: MediaStream) => {
+          const _video = this.video.nativeElement;
+          _video.srcObject = ms;
+          _video.play();
+        });
     }
+  }
+
+  getUser(): void {
+    this.store.subscribe((state) => {
+      this.user = {...state.user};
+    });
   }
 
   onStop(): void {
     this.video.nativeElement.pause();
-    (this.video.nativeElement.srcObject as MediaStream).getVideoTracks()[0].stop();
+    (this.video.nativeElement.srcObject as MediaStream)
+      .getVideoTracks()[0]
+      .stop();
     this.video.nativeElement.srcObject = null;
   }
 
@@ -41,6 +71,7 @@ export class SelfieComponent implements OnInit{
     const _canvas = this.canvas.nativeElement;
     let context = _canvas.getContext('2d');
     context.drawImage(_video, 0, 32, 302, 70);
+    this.imageURL = _canvas.toDataURL('image/png',1.0);
     this.youLike = true;
     this.cameraActive = false;
     this.onStop();
@@ -52,10 +83,10 @@ export class SelfieComponent implements OnInit{
     this.onStart();
   }
 
-  sendForm(){
-    const _canvas = this.canvas.nativeElement;
-    let dataURL = _canvas.toDataURL();
-    console.log(dataURL);
+  sendForm() {
+    this.user.photo = this.imageURL as string;
+    this.http.createUser(this.user).subscribe(response => {
+      console.log(response);
+    });
   }
-
 }
