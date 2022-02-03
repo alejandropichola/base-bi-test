@@ -15,12 +15,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { AppComponent } from './app.component';
 import { ValidationComponent } from './pages/validation/validation.component';
 import { InputTextFormComponent } from '@components/form/input/input.form.component';
+import { SelfieComponent } from './pages/selfie/selfie.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ValidationComponent,
-    InputTextFormComponent
+    InputTextFormComponent,
+    SelfieComponent
   ],
   imports: [
     BrowserModule,
