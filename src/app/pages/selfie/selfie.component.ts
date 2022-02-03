@@ -8,10 +8,12 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 import { AppState } from '@/app/app.state';
 import { UserInterface } from '@/app/interfaces/user';
 import { UserServices } from '@/app/services/createUser';
+import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-selfie',
@@ -32,7 +34,8 @@ export class SelfieComponent implements OnInit {
   constructor(
     @Inject(PLATFORM_ID) private _platform: Object,
     private store: Store<AppState>,
-    private http: UserServices
+    private http: UserServices,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -84,9 +87,31 @@ export class SelfieComponent implements OnInit {
   }
 
   sendForm() {
-    this.user.photo = this.imageURL as string;
+    this.user.photo = this.imageURL.split('base64,')[1];
     this.http.createUser(this.user).subscribe(response => {
-      console.log(response);
+      this.confirmAlert();
+    }, error =>{
+      this.errorAlert();
+    });
+
+  }
+
+  confirmAlert(){
+    Swal.fire({
+      title: 'Enviado',
+      icon: 'success',
+      timer: 1500,
+      showConfirmButton: false,
+    });
+    this.router.navigate(['validation']);
+  }
+
+  errorAlert(){
+    Swal.fire({
+      title: 'Error al enviar',
+      icon: 'error',
+      showConfirmButton: true
     });
   }
+
 }

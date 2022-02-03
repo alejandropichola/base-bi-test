@@ -11,7 +11,7 @@ export class UserServices {
 
   createUser(user: UserInterface): Observable<ResponseInterface<Object>> {
     return this.http.post<ResponseInterface<Object>>(
-      `${environment.env.hostURL}/api/person`,
+      `${environment.env.hostURL}/api/persons`,
       user
     );
   }
