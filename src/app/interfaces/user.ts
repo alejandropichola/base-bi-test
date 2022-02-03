@@ -1,7 +1,8 @@
 export interface UserInterface {
-  firstName: string;
-  lastName: string;
+  name: string;
+  lastname: string;
   dpi: string;
   email: string;
   phone: string;
+  photo: string
 }

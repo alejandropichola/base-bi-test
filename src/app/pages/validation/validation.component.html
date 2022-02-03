@@ -1,45 +1,78 @@
-<div class="flex w-full flex-col items-center lg:py-12 lg:px-6 xs:py-2 xs:px-2">
-  <div class="flex bg-primary-100 flex-col lg:w-6/12 xs:w-full">
-    <h1 class="text-2xl">Datos personales</h1>
-    <h2>. * Todos los campos son obligatorios</h2>
-    <form (submit)="nextStep()">
+<div
+  class="
+    flex
+    h-screen
+    overflow-auto
+    bg-primary-100
+    w-full
+    flex-col
+    lg:pt-12
+    lg:px-6
+    xs:py-0
+    xs:px-0
+    items-center
+  "
+>
+  <div class="flex flex-col lg:w-6/12 xs:w-full">
+    <div class="flex flex-col items-center my-5">
+      <img class="w-50px" src="/assets/icon/bi-logo-white.svg" alt="Logo BI" />
+      <h1 class="text-28px font-semibold text-white">Datos personales</h1>
+      <h2 class="text-white text-sm font-light">*Todos los campos son obligatorios*</h2>
+    </div>
+    <form [formGroup]="form" class="bg-white px-9 py-11 rounded-t-3xl" (submit)="nextStep()">
       <app-input
         label="Nombres"
-        [(value)]="user.firstName"
+        icon="/assets/icon/bi-user.svg"
         [required]="true"
         placeholder="Ingrese nombre"
-        name="firstName"
+        name="name"
+        [parentForm]="form"
       ></app-input>
       <app-input
         label="Apellidos"
-        [(value)]="user.lastName"
+        icon="/assets/icon/bi-user.svg"
         [required]="true"
         placeholder="Ingrese apellidos"
-        name="lastName"
+        name="lastname"
+        [parentForm]="form"
       ></app-input>
       <app-input
         label="DPI"
-        [(value)]="user.dpi"
+        icon="/assets/icon/bi-identification.svg"
         [required]="true"
         placeholder="Ingrese DPI"
+        rules="number"
         name="dpi"
+        [parentForm]="form"
       ></app-input>
       <app-input
         label="Teléfono"
-        [(value)]="user.phone"
+        icon="/assets/icon/bi-phone.svg"
         [required]="true"
         placeholder="Ingrese teléfono"
+        rules="number"
         name="phone"
+        [parentForm]="form"
       ></app-input>
       <app-input
         label="Correo"
-        [(value)]="user.email"
+        icon="/assets/icon/bi-email.svg"
         [required]="true"
-        placeholder="Ingrese correo"
+        [isEmail]="true"
+        placeholder="Ej: correo@ejemplo.com"
+        rules="email"
         name="email"
+        [parentForm]="form"
       ></app-input>
-      <div class="w-full lg:px-6 py-3 xs:px-2 flex justify-end">
-        <button [disabled]="!user.dpi && !user.firstName" [class]="!user.dpi && !user.firstName ? ' bg-blue-200' : 'bg-blue-500'" class="text-white p-2">Siguiente</button>
+      <div class="w-full lg:px-6 py-2 xs:px-2 flex justify-end">
+        <button
+          [disabled]="!form.valid"
+          [class]="!form.valid ? ' bg-blue-200' : 'bg-blue-500'
+          "
+          class="text-white flex items-center justify-center w-12 h-12 rounded-full"
+        >
+          <img src="/assets/icon/bi-arrow.svg" alt="" />
+        </button>
       </div>
     </form>
   </div>
