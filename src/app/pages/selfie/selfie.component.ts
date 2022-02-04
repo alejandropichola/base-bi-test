@@ -21,10 +21,9 @@ import Swal  from 'sweetalert2';
   styleUrls: ['./selfie.component.scss'],
 })
 export class SelfieComponent implements OnInit {
-  @ViewChild('video', { static: true }) video:
-    | ElementRef<HTMLVideoElement>
-    | any;
-  @ViewChild('canvas') canvas: ElementRef | any;
+  @ViewChild('video', { static: true }) video!:
+    | ElementRef<HTMLVideoElement>;
+  @ViewChild('canvas') canvas!: ElementRef<HTMLInputElement & HTMLCanvasElement>;
 
   cameraActive: boolean = true;
   youLike: boolean = false;
@@ -73,7 +72,7 @@ export class SelfieComponent implements OnInit {
     const _video = this.video.nativeElement;
     const _canvas = this.canvas.nativeElement;
     let context = _canvas.getContext('2d');
-    context.drawImage(_video, 0, 32, 302, 70);
+    context?.drawImage(_video, 0, 32, 302, 70);
     this.imageURL = _canvas.toDataURL('image/png',1.0);
     this.youLike = true;
     this.cameraActive = false;
