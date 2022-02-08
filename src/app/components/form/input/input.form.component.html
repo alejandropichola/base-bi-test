@@ -9,9 +9,11 @@
     [type]="type"
     [placeholder]="placeholder"
     [formControlName]="name"
+    #inputElement
+    (keypress)="validationValue($event)"
   />
   <div
-    class="text-red-300 text-xs font-semibold"
+    class="text-red-300 text-xs font-semibold flex flex-col"
     *ngIf="
       parentForm.get(name)?.errors &&
       (parentForm.get(name)?.touched || parentForm.get(name)?.dirty)
@@ -30,8 +32,11 @@
     >
       El formato es invalido Ej: usuario@ejemplo.com.
     </span>
-    <span *ngIf="parentForm.get(name)?.hasError('minLength')">
-      El minimo de caracteres es {{ getError(parentForm) }}
+    <span *ngIf="parentForm.get(name)?.hasError('minlength')">
+      El mínimo de caracteres es {{ parentForm.get(name)?.errors?.minlength.requiredLength }}
+    </span>
+    <span *ngIf="parentForm.get(name)?.hasError('maxlength')">
+      El máximo de caracteres es {{ parentForm.get(name)?.errors?.maxlength.requiredLength }}
     </span>
   </div>
 </div>

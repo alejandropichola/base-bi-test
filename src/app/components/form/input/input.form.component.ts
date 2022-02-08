@@ -1,14 +1,14 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { InputType } from '@/app/types/inputType';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.form.component.html',
 })
 export class InputTextFormComponent implements OnInit {
-  @Input()
-  value: string = '';
   @Input()
   label: string = '';
   @Input()
@@ -24,35 +24,37 @@ export class InputTextFormComponent implements OnInit {
   @Input()
   icon: string = '';
   @Input()
-  rules: string = InputType.string;
+  rules: 'all' | 'string' | 'number' | 'email' = 'all';
   @Input()
   parentForm!: FormGroup;
-
-  formGroup: FormGroup = new FormGroup({});
 
   @Output()
   valueChange: EventEmitter<string> = new EventEmitter();
 
-  constructor(private form: FormBuilder) {
-  }
+  @ViewChild('inputElement')
+  inputElement!: ElementRef;
+  formGroup: FormGroup = new FormGroup({});
 
-  updateValue (value: string): void {
+
+  constructor(private form: FormBuilder) {}
+
+  updateValue(value: string): void {
     this.valueChange.emit(value);
   }
 
-  getRule(rule: string): InputType {
-    switch(rule) {
-      case 'email':
-        return InputType.email
-      case 'number':
-        return InputType.number
-      default:
-        return InputType.string
-    }
-  }
+  validationValue(event: KeyboardEvent): string | boolean | KeyboardEvent {
+    if (this.rules === 'string') {
+      const regex = /^(([A-záéíóúñÁÉÍÓÚÑ])|([a-z])+( ))+$/g;
+      const { value } = this.inputElement.nativeElement;
+      const valueWord = `${value}${event.key}`;
 
-  getError(error: any) {
-    console.log(error)
+      if (!regex.test(valueWord)) {
+        return false;
+      } else {
+        return event;
+      }
+    }
+    return event;
   }
 
   ngOnInit(): void {
