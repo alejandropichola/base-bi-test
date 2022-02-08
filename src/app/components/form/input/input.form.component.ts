@@ -27,6 +27,8 @@ export class InputTextFormComponent implements OnInit {
   rules: 'all' | 'string' | 'number' | 'email' = 'all';
   @Input()
   parentForm!: FormGroup;
+  @Input()
+  length: string = '50';
 
   @Output()
   valueChange: EventEmitter<string> = new EventEmitter();
@@ -43,11 +45,18 @@ export class InputTextFormComponent implements OnInit {
   }
 
   validationValue(event: KeyboardEvent): string | boolean | KeyboardEvent {
+    const { value } = this.inputElement.nativeElement;
+    const valueWord = `${value}${event.key}`;
     if (this.rules === 'string') {
       const regex = /^(([A-záéíóúñÁÉÍÓÚÑ])|([a-z])+( ))+$/g;
-      const { value } = this.inputElement.nativeElement;
-      const valueWord = `${value}${event.key}`;
 
+      if (!regex.test(valueWord)) {
+        return false;
+      } else {
+        return event;
+      }
+    } else if (this.rules === 'number') {
+      const regex = /^[0-9]+$/g;
       if (!regex.test(valueWord)) {
         return false;
       } else {
