@@ -1,0 +1,42 @@
+<div class="flex flex-col w-full pb-7" [formGroup]="parentForm">
+  <label class="text-gray-550 font-light text-sm pb-2 flex items-center"
+    ><img class="pr-3" *ngIf="icon" [src]="icon" />{{ label
+    }}<span class="pl-1 pt-1" *ngIf="required">*</span></label
+  >
+  <input
+    class="w-full h-10 border-solid border-gray-250 pl-2 rounded-5px border"
+    [name]="name"
+    [type]="type"
+    [placeholder]="placeholder"
+    [formControlName]="name"
+    #inputElement
+    (keypress)="validationValue($event)"
+  />
+  <div
+    class="text-red-300 text-xs font-semibold flex flex-col"
+    *ngIf="
+      parentForm.get(name)?.errors &&
+      (parentForm.get(name)?.touched || parentForm.get(name)?.dirty)
+    "
+  >
+    <span *ngIf="parentForm.get(name)?.hasError('required')">
+      El campo {{ label }} es requerido.
+    </span>
+    <span
+      *ngIf="parentForm.get(name)?.hasError('pattern') && rules === 'number'"
+    >
+      El campo admite solo datos numéricos.
+    </span>
+    <span
+      *ngIf="parentForm.get(name)?.hasError('pattern') && rules === 'email'"
+    >
+      El formato es invalido Ej: usuario@ejemplo.com.
+    </span>
+    <span *ngIf="parentForm.get(name)?.hasError('minlength')">
+      El mínimo de caracteres es {{ parentForm.get(name)?.errors?.minlength.requiredLength }}
+    </span>
+    <span *ngIf="parentForm.get(name)?.hasError('maxlength')">
+      El máximo de caracteres es {{ parentForm.get(name)?.errors?.maxlength.requiredLength }}
+    </span>
+  </div>
+</div>

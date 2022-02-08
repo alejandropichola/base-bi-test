@@ -4,7 +4,8 @@
 export const environment = {
   production: false,
   env: {
-    NG_APP_HOST_URL: process.env.NG_APP_HOST_URL
+    hostURL: process.env.NG_APP_HOST_URL || '',
+    storeLog: process.env.NG_APP_STORE_LOG || false
   }
 };
 
