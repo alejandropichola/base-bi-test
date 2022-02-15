@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppRoutingModule } from '@/app/app-routing.module';
 import { ErrorInterceptorService } from '@/app/utils/error-interceptor.service';
 import { errorReducer } from '@/app/store/error.reducer';
@@ -17,7 +19,6 @@ import { HomeComponent } from '@/app/pages/home/home.component';
 import { AppComponent } from '@/app/app.component';
 import { ValidationComponent } from './pages/validation/validation.component';
 import { InputTextFormComponent } from '@components/form/input/input.form.component';
-import { SelfieComponent } from './pages/selfie/selfie.component';
 import { environment } from '@/environments/environment';
 
 @NgModule({
@@ -26,10 +27,10 @@ import { environment } from '@/environments/environment';
     HomeComponent,
     ValidationComponent,
     InputTextFormComponent,
-    SelfieComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

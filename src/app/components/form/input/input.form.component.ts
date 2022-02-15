@@ -9,34 +9,22 @@ import {
   templateUrl: './input.form.component.html',
 })
 export class InputTextFormComponent implements OnInit {
-  @Input()
-  label: string = '';
-  @Input()
-  placeholder: string = '';
-  @Input()
-  name: string = '';
-  @Input()
-  required: boolean = false;
-  @Input()
-  isEmail: boolean = false;
-  @Input()
-  type: string = 'text';
-  @Input()
-  icon: string = '';
-  @Input()
-  rules: 'all' | 'string' | 'number' | 'email' = 'all';
-  @Input()
-  parentForm!: FormGroup;
-  @Input()
-  length: string = '50';
+  @Input() label: string = '';
+  @Input() placeholder: string = '';
+  @Input() name: string = '';
+  @Input() required: boolean = false;
+  @Input() isEmail: boolean = false;
+  @Input() type: string = 'text';
+  @Input() icon: string = '';
+  @Input() rules: 'all' | 'string' | 'number' | 'email' = 'all';
+  @Input() parentForm!: FormGroup;
+  @Input() length: string = '50';
 
-  @Output()
-  valueChange: EventEmitter<string> = new EventEmitter();
+  @Output() valueChange: EventEmitter<string> = new EventEmitter();
 
-  @ViewChild('inputElement')
-  inputElement!: ElementRef;
+  @ViewChild('inputElement')  inputElement!: ElementRef;
+
   formGroup: FormGroup = new FormGroup({});
-
 
   constructor(private form: FormBuilder) {}
 
